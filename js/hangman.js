@@ -6,7 +6,7 @@ var countriesWords = ['COLOMBIA', 'ARGENTINA', 'BRASIL', 'MEXICO', 'SWITZERLAND'
 var sportsWords = ['FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BASKETBALL', 'GOLF']
 let categoryArray = []
 let wordContainer = document.getElementById('word-container')
-let spansletters = []
+let randomWord = ''
 
 
 
@@ -128,15 +128,16 @@ function showCategoryAgain() {
 function selectRandomWord(selectedCategoryArray) {
     //Selecciona una palabra de manera aleatoria del array de la categoria seleccionada y genera un
     //array compuesto por las letras de dicha palabra
-    let randomWord = selectedCategoryArray[Math.floor(Math.random() * selectedCategoryArray.length)];
-    console.log(randomWord)
+    randomWord = selectedCategoryArray[Math.floor(Math.random() * selectedCategoryArray.length)];
+    //console.log(randomWord)
     createEmptySpacesWord(randomWord)
+    return randomWord
 }
 
 function createEmptySpacesWord (word){
     //Crea los espacios en blanco (span) por cada letra de la palabra seleccionada al azar
     for (i=0 ; i < word.length ;i++) {
-        wordContainer.innerHTML += '<span class="letter" id="random-word-letter-' + word[i] + '">'+word[i] +'</span>'
+        wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
     }
 }
 
@@ -156,12 +157,13 @@ function getLetterKeyboardAndCompare(event) {
     let clickedLetter = capturedLetter.innerHTML   //   Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
-    spansletters = document.getElementsByClassName('letter')
-    console.log(spansletters)
-   
-    for (i=0; i<spansletters.length; i++){
-        if (spansletters[i].innerHTML == clickedLetter) {
-            console.log('la letra si está, en la posición: '+i+'')  
+    for (i=0; i<randomWord.length; i++){
+        if (randomWord[i] == clickedLetter) {
+
+        let spanLetter = document.getElementById('random-word-letter-'+randomWord[i]+'')
+        spanLetter.innerHTML = randomWord[i]
+
+        console.log('la letra si está, en la posición: '+i+'')  
         } else {
             console.log('la letra no está')
         }
