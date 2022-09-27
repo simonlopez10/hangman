@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Caveat&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <title>Hangman ☠</title>
+</head>
+
+<body>
+
+    <header class="title-container">
+        <h1>☠ Hangman Game ☠</h1>
+    </header>
+
+    <section class="word-instructions-and-hangman-container">
+
+        <div class="instructions-container">
+            <div class="instructions-title">
+                <h2>Instructions:</h2>
+            </div>
+
+            <div class="instructions-items">
+                <div class="instructions-items-frame">
+                    <h4>WELCOME TO HANGMAN GAME!</h4>
+                    <p>1- Select a category </p>
+                    <p>2- Click the letters to guess a word </p>
+                    <p>3- Press restart button to play again </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="word-and-category-container">
+
+            <div class="select-category-title">
+                <h2 id="select-a-category">1- Select a category 🐾 🌎 ⚽ </h2>
+            </div>
+
+            <div class="inputs-category" id="inputs-category">
+                <label class="category" id="animals-label" for="animals">ANIMALS</label>
+                <input type="radio" id="animals" name="category">
+
+                <label class="category" id="countries-label" for="countries">COUNTRIES</label>
+                <input type="radio" id="countries" name="category">
+
+                <label class="category" id="sports-label" for="sports">SPORTS</label>
+                <input type="radio" id="sports" name="category">
+            </div>
+
+            <div class="word-container" id="word-container">
+
+            </div>
+        </div>
+
+        <div class="hangman-container">
+            <div id="hangman">
+                <span id="barra-1"></span>
+                <span id="barra-2"></span>
+                <span id="barra-3"></span>
+                <span id="barra-4"></span>
+                <span id="cuerda"></span>
+                <span id="cabeza"></span>
+                <span id="cuerpo"></span>
+                <span id="mano-izq"></span>
+                <span id="mano-der"></span>
+                <span id="pie-izq"></span>
+                <span id="pie-der"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="keyboard-container-and-title">
+
+        <div class="keyboard-title-container">
+            <h2>2- Click on the virtual keyboard to play 🎮👇🏼</h2>
+        </div>
+
+        <div class="keyboard-and-results-container">
+
+            <div class="you-lose-container">
+                <img id="you-lose-img" src="/img/youlose-removebg-preview.png" alt="you lose">
+            </div>
+
+            <div class="keyboard-container">
+                <div id="keyboard-frame">
+
+                </div>
+            </div>
+
+            <div class="you-win-container">
+                <img id="you-win-img" src="/img/youwin-removebg-preview.png" alt="you win">
+
+            </div>
+
+        </div>
+    </section>
+
+    <script src="/js/hangman.js"></script>
+</body>
+
+</html>
