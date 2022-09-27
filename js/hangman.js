@@ -161,9 +161,9 @@ function getLetterKeyboardAndCompare(event) {
    
     for (i=0; i<spansletters.length; i++){
         if (spansletters[i].innerHTML == clickedLetter) {
-            console.log('la letra si está')  
+            console.log('la letra si está, en la posición: '+i+'')  
         } else {
-            console.log('la letra no está)')
+            console.log('la letra no está')
         }
     }
 }
