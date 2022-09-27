@@ -150,10 +150,10 @@ function getEventKeyboard () {
 }
 
 function getLetterKeyboardAndCompare(event) {
-    // Deja de capturar la letra una vez clickeada y muestra en console log la letra clickeada
-    let capturedLetter = event.target            // Sirve para caputar el evento de cada ciclo de función anterior
-    capturedLetter.style.pointerEvents = 'none'  //Sirve para solo capturar la letra una vez
-    let clickedLetter = capturedLetter.innerHTML 
+    // identifica la letra clickeada y la muestra en console log
+    let capturedLetter = event.target                // Sirve para caputar el evento clic sobre cada tecla
+    capturedLetter.style.pointerEvents = 'none'     //  Sirve para capturar la letra solo una vez
+    let clickedLetter = capturedLetter.innerHTML   //   Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
     spansletters = document.getElementsByClassName('letter')
@@ -161,7 +161,9 @@ function getLetterKeyboardAndCompare(event) {
    
     for (i=0; i<spansletters.length; i++){
         if (spansletters[i].innerHTML == clickedLetter) {
-            console.log('sisas')
+            console.log('la letra si está')  
+        } else {
+            console.log('la letra no está)')
         }
     }
 }
