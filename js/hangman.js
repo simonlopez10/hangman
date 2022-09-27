@@ -5,8 +5,9 @@ var animalsWords = ['COCKATOO', 'OWL', 'CAT', 'DOG', 'SEAL', 'PARROT', 'ELEPHANT
 var countriesWords = ['COLOMBIA', 'ARGENTINA', 'BRASIL', 'MEXICO', 'SWITZERLAND', 'NIGERIA', 'BOLIVIA']
 var sportsWords = ['FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BASKETBALL', 'GOLF']
 let categoryArray = []
-let arrayWord = []
 let wordContainer = document.getElementById('word-container')
+let spansletters = []
+
 
 
 function startingState() {
@@ -127,38 +128,48 @@ function showCategoryAgain() {
 function selectRandomWord(selectedCategoryArray) {
     //Selecciona una palabra de manera aleatoria del array de la categoria seleccionada y genera un
     //array compuesto por las letras de dicha palabra
-    let word = selectedCategoryArray[Math.floor(Math.random() * selectedCategoryArray.length)];
-    arrayWord = word.split('')
-    console.log(arrayWord)
-    createEmptySpacesWord(arrayWord)
+    let randomWord = selectedCategoryArray[Math.floor(Math.random() * selectedCategoryArray.length)];
+    console.log(randomWord)
+    createEmptySpacesWord(randomWord)
 }
 
-function createEmptySpacesWord (arrayWord){
+function createEmptySpacesWord (word){
     //Crea los espacios en blanco (span) por cada letra de la palabra seleccionada al azar
-    for (i=0 ; i < arrayWord.length ;i++) {
-        wordContainer.innerHTML += '<span id="random-word-letter-' + arrayWord[i] + '">'+arrayWord[i] +'</span>'
+    for (i=0 ; i < word.length ;i++) {
+        wordContainer.innerHTML += '<span class="letter" id="random-word-letter-' + word[i] + '">'+word[i] +'</span>'
     }
-}
-
-function CompareLetterOnRandomWord () {
-//Compara las teclas clickeadas con el arreglo de la palabra aleatoria
 }
 
 function getEventKeyboard () {
     // Genera un evente cada que se le da click a cualquiera de las letras del teclado virtual
     for (i=0 ; i < arrayAlphabet.length ; i++) {
         let capturedLetter = document.getElementById('letter-'+arrayAlphabet[i]+'')
-        capturedLetter.addEventListener('click',getLetterKeyboard)
+        capturedLetter.addEventListener('click',getLetterKeyboardAndCompare)
     }
     //Esta función es llamada al iniciar o cargar la aplicación
 }
 
-function getLetterKeyboard(event) {
+function getLetterKeyboardAndCompare(event) {
     // Deja de capturar la letra una vez clickeada y muestra en console log la letra clickeada
     let capturedLetter = event.target            // Sirve para caputar el evento de cada ciclo de función anterior
     capturedLetter.style.pointerEvents = 'none'  //Sirve para solo capturar la letra una vez
     let clickedLetter = capturedLetter.innerHTML 
     console.log(clickedLetter)
+
+    spansletters = document.getElementsByClassName('letter')
+    console.log(spansletters)
+   
+    for (i=0; i<spansletters.length; i++){
+        if (spansletters[i].innerHTML == clickedLetter) {
+            console.log('sisas')
+        }
+    }
+}
+
+function CompareLetterOnRandomWord () {
+    //Compara las teclas clickeadas con el arreglo de la palabra aleatoria
+
+
 }
 
 
