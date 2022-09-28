@@ -123,7 +123,6 @@ function showCategoryAgain() {
         labelCountries.style.color = ''
         labelSports.style.color = ''
     })
-
 }
 
 function selectRandomWord(selectedCategoryArray) {
@@ -140,6 +139,7 @@ function createEmptySpacesWord(word) {
     for (i = 0; i < word.length; i++) {
         wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
     }
+    
     getEventKeyboard()
 }
 
@@ -162,6 +162,7 @@ function getLetterKeyboardAndCompare(event) {
     if (randomWord.includes(clickedLetter)) {
         capturedLetter.style.backgroundColor = 'lightgreen'
         isOk += 1
+        if (isOk == randomWord.length)
         youWin()
     } else {
         capturedLetter.style.backgroundColor = 'lightcoral'
@@ -186,6 +187,9 @@ function getLetterKeyboardAndCompare(event) {
 
 function youWin() {
     console.log(isOk)
+    let youWinImg = document.getElementById('you-win-img')
+    youWinImg.style.display = 'block'
+    playAgain()
 }
 
 function youLose() {
@@ -224,10 +228,15 @@ function youLose() {
             pieDer.style.display = 'block'
             backgroundImg.style.backgroundImage = ''
             youLoseImg.style.display = 'block'
+            playAgain()
             break;
         default:
             alert('PERDISTE');
     }
+}
+
+function playAgain() {
+    alert('desea volver a iniciar')
 }
 
 window.addEventListener('load', startingState)
