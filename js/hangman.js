@@ -7,6 +7,8 @@ var sportsWords = ['FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BA
 let categoryArray = []
 let wordContainer = document.getElementById('word-container')
 let randomWord = ''
+let isOk = 0
+let isNotOk = 0
 
 
 
@@ -138,7 +140,7 @@ function createEmptySpacesWord(word) {
     for (i = 0; i < word.length; i++) {
         wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
     }
-     getEventKeyboard()
+    getEventKeyboard()
 }
 
 function getEventKeyboard() {
@@ -157,15 +159,18 @@ function getLetterKeyboardAndCompare(event) {
     let clickedLetter = capturedLetter.innerHTML   //   Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
-   
     if (randomWord.includes(clickedLetter)) {
         capturedLetter.style.backgroundColor = 'lightgreen'
+        isOk += 1
+        youWin()
     } else {
         capturedLetter.style.backgroundColor = 'lightcoral'
-    }
+        isNotOk += 1
+        if (isNotOk <= 7) {
+            youLose()
+        }
 
-    let isOk = 0
-    let isNotOk = 0
+    }
 
     for (i = 0; i < randomWord.length; i++) {
         if (randomWord[i] == clickedLetter) {
@@ -175,6 +180,53 @@ function getLetterKeyboardAndCompare(event) {
         } else {
             console.log('la letra no está')
         }
+    }
+}
+
+
+function youWin() {
+    console.log(isOk)
+}
+
+function youLose() {
+    
+    console.log(isNotOk)
+    let cuerda = document.getElementById('cuerda')
+    let cabeza = document.getElementById('cabeza')
+    let cuerpo = document.getElementById('cuerpo')
+    let manoIzq = document.getElementById('mano-izq')
+    let manoDer = document.getElementById('mano-der')
+    let pieIzq = document.getElementById('pie-izq')
+    let pieDer = document.getElementById('pie-der')
+    let youLoseImg = document.getElementById('you-lose-img')
+    let backgroundImg = document.getElementsByTagName('body')[0]
+
+    switch (isNotOk) {
+        case 1:
+            cuerda.style.display = 'block'
+            break;
+        case 2:
+            cabeza.style.display = 'block'
+            break;
+        case 3:
+            cuerpo.style.display = 'block'
+            break;
+        case 4:
+            manoIzq.style.display = 'block'
+            break;
+        case 5:
+            manoDer.style.display = 'block'
+            break;
+        case 6:
+            pieIzq.style.display = 'block'
+            break;
+        case 7:
+            pieDer.style.display = 'block'
+            backgroundImg.style.backgroundImage = ''
+            youLoseImg.style.display = 'block'
+            break;
+        default:
+            alert('PERDISTE');
     }
 }
 
