@@ -166,7 +166,7 @@ function getLetterKeyboardAndCompare(event) {
             console.log('la letra si está, en la posición: ' + i + '')
 
         } else {
-            capturedLetter.style.backgroundColor = 'lightred'
+            capturedLetter.style.backgroundColor = 'lightcoral'
             console.log('la letra no está')
         }
     }
