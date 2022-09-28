@@ -48,7 +48,6 @@ function startingState() {
     pieDer.style.display = 'none'
 
     createKeyboard()
-    getEventKeyboard()
 }
 
 function createKeyboard() {
@@ -139,6 +138,7 @@ function createEmptySpacesWord(word) {
     for (i = 0; i < word.length; i++) {
         wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
     }
+     getEventKeyboard()
 }
 
 function getEventKeyboard() {
@@ -157,26 +157,25 @@ function getLetterKeyboardAndCompare(event) {
     let clickedLetter = capturedLetter.innerHTML   //   Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
+   
+    if (randomWord.includes(clickedLetter)) {
+        capturedLetter.style.backgroundColor = 'lightgreen'
+    } else {
+        capturedLetter.style.backgroundColor = 'lightcoral'
+    }
+
+    let isOk = 0
+    let isNotOk = 0
+
     for (i = 0; i < randomWord.length; i++) {
         if (randomWord[i] == clickedLetter) {
-
-            let spanLetter = document.getElementById('random-word-letter-' + randomWord[i] + '')
+            let spanLetter = document.getElementsByTagName('span')[i]
             spanLetter.innerHTML = randomWord[i]
-            capturedLetter.style.backgroundColor = 'lightgreen'
             console.log('la letra si está, en la posición: ' + i + '')
-
         } else {
-            capturedLetter.style.backgroundColor = 'lightcoral'
             console.log('la letra no está')
         }
     }
 }
-
-function CompareLetterOnRandomWord() {
-    //Compara las teclas clickeadas con el arreglo de la palabra aleatoria
-
-
-}
-
 
 window.addEventListener('load', startingState)
