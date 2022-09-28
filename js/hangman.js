@@ -70,7 +70,7 @@ function selectedCategory() {
     let labelAnimals = document.getElementById('animals-label')
     let labelCountries = document.getElementById('countries-label')
     let labelSports = document.getElementById('sports-label')
-   
+
     labelAnimals.addEventListener('click', function () {
         wordContainer.innerHTML = ''
         labelAnimals.style.color = 'green'
@@ -114,7 +114,7 @@ function showCategoryAgain() {
     let labelCountries = document.getElementById('countries-label')
     let labelSports = document.getElementById('sports-label')
 
-    selectACategory.addEventListener('click', function() {
+    selectACategory.addEventListener('click', function () {
         labelAnimals.style.display = 'flex'
         labelCountries.style.display = 'flex'
         labelSports.style.display = 'flex'
@@ -134,18 +134,18 @@ function selectRandomWord(selectedCategoryArray) {
     return randomWord
 }
 
-function createEmptySpacesWord (word){
+function createEmptySpacesWord(word) {
     //Crea los espacios en blanco (span) por cada letra de la palabra seleccionada al azar
-    for (i=0 ; i < word.length ;i++) {
+    for (i = 0; i < word.length; i++) {
         wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
     }
 }
 
-function getEventKeyboard () {
+function getEventKeyboard() {
     // Genera un evente cada que se le da click a cualquiera de las letras del teclado virtual
-    for (i=0 ; i < arrayAlphabet.length ; i++) {
-        let capturedLetter = document.getElementById('letter-'+arrayAlphabet[i]+'')
-        capturedLetter.addEventListener('click',getLetterKeyboardAndCompare)
+    for (i = 0; i < arrayAlphabet.length; i++) {
+        let capturedLetter = document.getElementById('letter-' + arrayAlphabet[i] + '')
+        capturedLetter.addEventListener('click', getLetterKeyboardAndCompare)
     }
     //Esta función es llamada al iniciar o cargar la aplicación
 }
@@ -157,20 +157,22 @@ function getLetterKeyboardAndCompare(event) {
     let clickedLetter = capturedLetter.innerHTML   //   Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
-    for (i=0; i<randomWord.length; i++){
+    for (i = 0; i < randomWord.length; i++) {
         if (randomWord[i] == clickedLetter) {
 
-        let spanLetter = document.getElementById('random-word-letter-'+randomWord[i]+'')
-        spanLetter.innerHTML = randomWord[i]
+            let spanLetter = document.getElementById('random-word-letter-' + randomWord[i] + '')
+            spanLetter.innerHTML = randomWord[i]
+            capturedLetter.style.backgroundColor = 'lightgreen'
+            console.log('la letra si está, en la posición: ' + i + '')
 
-        console.log('la letra si está, en la posición: '+i+'')  
         } else {
+            capturedLetter.style.backgroundColor = 'lightred'
             console.log('la letra no está')
         }
     }
 }
 
-function CompareLetterOnRandomWord () {
+function CompareLetterOnRandomWord() {
     //Compara las teclas clickeadas con el arreglo de la palabra aleatoria
 
 
