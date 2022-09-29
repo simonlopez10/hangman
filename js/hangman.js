@@ -7,9 +7,6 @@ var sportsWords = ['FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BA
 let categoryArray = []
 let wordContainer = document.getElementById('word-container')
 let randomWord = ''
-let isOk = 0
-let isNotOk = 0
-
 
 
 function startingState() {
@@ -152,34 +149,36 @@ function getEventKeyboard() {
     //Esta función es llamada al iniciar o cargar la aplicación
 }
 
+const numberOfAttemps = 7;
+let isOk = 0
+let isNotOk = 0
+
 function getLetterKeyboardAndCompare(event) {
     // identifica la letra clickeada y la muestra en console log
     let capturedLetter = event.target                // Sirve para caputar el evento clic sobre cada tecla
-    capturedLetter.style.pointerEvents = 'none'     //  Sirve para capturar la letra solo una vez
-    let clickedLetter = capturedLetter.innerHTML   //   Caputra el inner html de cada tecla
+    capturedLetter.style.pointerEvents = 'none'      // Sirve para capturar la letra solo una vez
+    let clickedLetter = capturedLetter.innerHTML     // Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
     if (randomWord.includes(clickedLetter)) {
         capturedLetter.style.backgroundColor = 'lightgreen'
-        isOk += 1
-        if (isOk == randomWord.length)
-        youWin()
-    } else {
+
+        for (i = 0; i < randomWord.length; i++) {
+            if (randomWord[i] == clickedLetter) {
+                isOk += 1
+                let spanLetter = document.getElementsByTagName('span')[i]
+                spanLetter.innerHTML = randomWord[i]
+            } 
+        }
+        if (isOk == randomWord.length) {
+            youWin()
+        }
+    }
+    else {
         capturedLetter.style.backgroundColor = 'lightcoral'
         isNotOk += 1
         if (isNotOk <= 7) {
             youLose()
-        }
-
-    }
-
-    for (i = 0; i < randomWord.length; i++) {
-        if (randomWord[i] == clickedLetter) {
-            let spanLetter = document.getElementsByTagName('span')[i]
-            spanLetter.innerHTML = randomWord[i]
-            console.log('la letra si está, en la posición: ' + i + '')
-        } else {
-            console.log('la letra no está')
         }
     }
 }
@@ -189,7 +188,6 @@ function youWin() {
     console.log(isOk)
     let youWinImg = document.getElementById('you-win-img')
     youWinImg.style.display = 'block'
-    playAgain()
 }
 
 function youLose() {
@@ -228,7 +226,6 @@ function youLose() {
             pieDer.style.display = 'block'
             backgroundImg.style.backgroundImage = ''
             youLoseImg.style.display = 'block'
-            playAgain()
             break;
         default:
             alert('PERDISTE');
@@ -238,5 +235,7 @@ function youLose() {
 function playAgain() {
     alert('desea volver a iniciar')
 }
+
+
 
 window.addEventListener('load', startingState)
