@@ -1,9 +1,8 @@
 //VARIABLES GLOBALES
 var arrayAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-var categories = ['animals', 'countries', 'sports']
 var animalsWords = ['COCKATOO', 'OWL', 'CAT', 'DOG', 'SEAL', 'PARROT', 'ELEPHANT', 'DOLPHIN', 'LION', 'TIGER', 'WHALE', 'MOLE', 'CAMEL', 'DINOSAUR', 'BIRD']
 var countriesWords = ['EGYPT','ITALY','RUSSIA','GERMANY','JAMAICA', 'CHINA', 'AUSTRALIA', 'COLOMBIA', 'ARGENTINA', 'BRASIL', 'MEXICO', 'SWITZERLAND', 'NIGERIA', 'BOLIVIA', 'UGANDA']
-var sportsWords = ['JUDO','CYCLING','SQUASH','RUGBY','KARATE','FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BASKETBALL', 'GOLF']
+var sportsWords = ['JUDO','CYCLING','SQUASH','RUGBY','KARATE','FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BASKETBALL', 'GOLF', 'POLO', 'RUNNING', 'SUMO' ]
 let categoryArray = []
 let wordContainer = document.getElementById('word-container')
 let randomWord = ''
@@ -63,6 +62,7 @@ function startingState() {
     createKeyboard()
 }
 
+
 function createKeyboard() {
 
     // Crea un teclado a partir de un array creado usando el metodo split al string alphabet
@@ -76,8 +76,9 @@ function createKeyboard() {
     selectedCategory()
 }
 
+
 function selectedCategory() {
-    // Valida que categoria fue seleccionada y le avisa ak usuario con un alert y un
+    // Valida que categoria fue seleccionada y le avisa al usuario con un alert y un
     //cambio en el estilo del label
     let labelAnimals = document.getElementById('animals-label')
     let labelCountries = document.getElementById('countries-label')
@@ -91,7 +92,6 @@ function selectedCategory() {
         categoryArray = animalsWords
         alert('You have selected Animals! 🐶🐱🐦')
         selectRandomWord(categoryArray)
-        // showCategoryAgain()
     })
 
     labelCountries.addEventListener('click', function () {
@@ -102,7 +102,6 @@ function selectedCategory() {
         categoryArray = countriesWords
         alert('You have selected Countries! 🗺🌎🌍')
         selectRandomWord(categoryArray)
-        // showCategoryAgain()
     })
 
     labelSports.addEventListener('click', function () {
@@ -113,37 +112,18 @@ function selectedCategory() {
         categoryArray = sportsWords
         alert('You have selected Sports! ⚽🎾🏀')
         selectRandomWord(categoryArray)
-        // showCategoryAgain()
     })
 }
 
-// function showCategoryAgain() {
-//     // Sirve para mostrar nuevamente las categorias al presionar el titulo de seleccionar categoria
-//     //por si el usuario no esta contento con su elección
-
-//     let selectACategory = document.getElementById('select-a-category')
-//     let labelAnimals = document.getElementById('animals-label')
-//     let labelCountries = document.getElementById('countries-label')
-//     let labelSports = document.getElementById('sports-label')
-
-//     selectACategory.addEventListener('click', function () {
-//         labelAnimals.style.display = 'flex'
-//         labelCountries.style.display = 'flex'
-//         labelSports.style.display = 'flex'
-//         labelAnimals.style.color = ''
-//         labelCountries.style.color = ''
-//         labelSports.style.color = ''
-//     })
-// }
 
 function selectRandomWord(selectedCategoryArray) {
     //Selecciona una palabra de manera aleatoria del array de la categoria seleccionada y genera un
     //array compuesto por las letras de dicha palabra
     randomWord = selectedCategoryArray[Math.floor(Math.random() * selectedCategoryArray.length)];
-    //console.log(randomWord)
     createEmptySpacesWord(randomWord)
     return randomWord
 }
+
 
 function createEmptySpacesWord(word) {
     //Crea los espacios en blanco (span) por cada letra de la palabra seleccionada al azar
@@ -157,13 +137,13 @@ function createEmptySpacesWord(word) {
     getEventKeyboard()
 }
 
+
 function getEventKeyboard() {
-    // Genera un evente cada que se le da click a cualquiera de las letras del teclado virtual
+    // Genera un evento cada que se le da click a cualquiera de las letras del teclado virtual
     for (i = 0; i < arrayAlphabet.length; i++) {
         let capturedLetter = document.getElementById('letter-' + arrayAlphabet[i] + '')
         capturedLetter.addEventListener('click', getLetterKeyboardAndCompare)
     }
-    //Esta función es llamada al iniciar o cargar la aplicación
 }
 
 const numberOfAttemps = 7;
@@ -177,25 +157,25 @@ function getLetterKeyboardAndCompare(event) {
     let clickedLetter = capturedLetter.innerHTML     // Caputra el inner html de cada tecla
     console.log(clickedLetter)
 
-    if (randomWord.includes(clickedLetter)) {
-        capturedLetter.style.backgroundColor = 'lightgreen'
+    if (randomWord.includes(clickedLetter)) {                   // Si la letra clickeada está
+        capturedLetter.style.backgroundColor = 'lightgreen'     // Color verde en teclado
 
-        for (i = 0; i < randomWord.length; i++) {
-            if (randomWord[i] == clickedLetter) {
-                isOk += 1
-                let spanLetter = document.getElementsByTagName('span')[i]
-                spanLetter.innerHTML = randomWord[i]
+        for (i = 0; i < randomWord.length; i++) {               // Compara letra clickeada con cada letra de la palabra
+            if (randomWord[i] == clickedLetter) {               // Si la letra clickeada es igual a la letra en la palabra[i]
+                isOk += 1                                       // Cuenta cada vez que hay coincidencia de clickeada con letra en palabra
+                let spanLetter = document.getElementsByTagName('span')[i]  // Encuentra posición de la letra
+                spanLetter.innerHTML = randomWord[i]                       // Escribe la letra clickeada en la coincidencia de la letra de la palabra
             }
         }
 
-        if (isOk == randomWord.length) {
+        if (isOk == randomWord.length) {                        // Si el conteo de letras acertadas es igual al tamaño de la palabra lleva a función ganar!
             youWin()
         }
 
     } else {
-        capturedLetter.style.backgroundColor = 'lightcoral'
-        isNotOk += 1
-        if (isNotOk <= 7) {
+        capturedLetter.style.backgroundColor = 'lightcoral'     // Si la letra no esta en la palabra, pone color rojo
+        isNotOk += 1                                            // Cuenta las veces que una letra no está en la palabra
+        if (isNotOk <= 7) {                                     // Si los errores son menores o iguales a 7 lleva a funcion pierde para ir dibujando el ahorcado
             youLose()
         }
     }
@@ -203,7 +183,8 @@ function getLetterKeyboardAndCompare(event) {
 
 
 function youWin() {
-    console.log(isOk)
+
+    // Si se gana el juego, muestra una imagen con la palabra tu ganas y muestra el botón de reinicio
     let youWinImg = document.getElementById('you-win-img')
     youWinImg.style.display = 'block'
     let restartleft = document.getElementById('left-button-restart')
@@ -217,7 +198,10 @@ function youWin() {
     restartleft.addEventListener('click', playAgain)
 }
 
+
 function youLose() {
+
+    // Si se pierde el juego, muestra una imagen con la palabra tu pierdes, un fondo con una cuerda de ahorcado y muestra el botón de reinicio 
 
     console.log(isNotOk)
     let cuerda = document.getElementById('cuerda')
@@ -230,6 +214,7 @@ function youLose() {
     let youLoseImg = document.getElementById('you-lose-img')
     let backgroundImg = document.getElementsByTagName('body')[0]
 
+    //Según el conteo de teclas erradas, dibuja desde la cuerda, hasta todas las partes del cuerpo (7 intentos)
     switch (isNotOk) {
         case 1:
             cuerda.style.display = 'block'
@@ -265,10 +250,10 @@ function youLose() {
     }
 }
 
+
 function playAgain() {
+    //Sirve para recargar la pagina cuando se presiona cualquiera de los botones de reinicio
     window.location.reload(true)
 }
-
-
 
 window.addEventListener('load', startingState)
