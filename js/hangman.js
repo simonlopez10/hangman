@@ -1,9 +1,9 @@
 //VARIABLES GLOBALES
 var arrayAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 var categories = ['animals', 'countries', 'sports']
-var animalsWords = ['COCKATOO', 'OWL', 'CAT', 'DOG', 'SEAL', 'PARROT', 'ELEPHANT']
-var countriesWords = ['COLOMBIA', 'ARGENTINA', 'BRASIL', 'MEXICO', 'SWITZERLAND', 'NIGERIA', 'BOLIVIA']
-var sportsWords = ['FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BASKETBALL', 'GOLF']
+var animalsWords = ['COCKATOO', 'OWL', 'CAT', 'DOG', 'SEAL', 'PARROT', 'ELEPHANT', 'DOLPHIN', 'LION', 'TIGER', 'WHALE', 'MOLE', 'CAMEL', 'DINOSAUR', 'BIRD']
+var countriesWords = ['EGYPT','ITALY','RUSSIA','GERMANY','JAMAICA', 'CHINA', 'AUSTRALIA', 'COLOMBIA', 'ARGENTINA', 'BRASIL', 'MEXICO', 'SWITZERLAND', 'NIGERIA', 'BOLIVIA', 'UGANDA']
+var sportsWords = ['JUDO','CYCLING','SQUASH','RUGBY','KARATE','FOOTBALL', 'SOCCER', 'BASEBALL', 'VOLLEYBALL', 'TENNIS', 'BASKETBALL', 'GOLF']
 let categoryArray = []
 let wordContainer = document.getElementById('word-container')
 let randomWord = ''
@@ -148,7 +148,7 @@ function selectRandomWord(selectedCategoryArray) {
 function createEmptySpacesWord(word) {
     //Crea los espacios en blanco (span) por cada letra de la palabra seleccionada al azar
     for (i = 0; i < word.length; i++) {
-        wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
+        wordContainer.innerHTML += '<span></span>'
     }
 
     let CategoryContainer = document.getElementById('inputs-category')
@@ -187,11 +187,12 @@ function getLetterKeyboardAndCompare(event) {
                 spanLetter.innerHTML = randomWord[i]
             }
         }
+
         if (isOk == randomWord.length) {
             youWin()
         }
-    }
-    else {
+
+    } else {
         capturedLetter.style.backgroundColor = 'lightcoral'
         isNotOk += 1
         if (isNotOk <= 7) {
