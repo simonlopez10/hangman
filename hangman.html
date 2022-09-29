@@ -78,24 +78,30 @@
     <section class="keyboard-container-and-title">
 
         <div class="keyboard-title-container">
-            <h2>2- Click on the virtual keyboard to play 🎮👇🏼</h2>
+            <h2 id="keyboard-to-play">2- Click on the virtual keyboard to play 🎮👇🏼</h2>
         </div>
 
         <div class="keyboard-and-results-container">
 
             <div class="you-lose-container">
                 <img id="you-lose-img" src="img/youlose-removebg-preview.png" alt="you lose">
+                <input type="button" class="play-again-buttons" id="left-button-restart" value="PLAY AGAIN !">
             </div>
 
             <div class="keyboard-container">
                 <div id="keyboard-frame">
 
                 </div>
+
+                <div>
+                    <p id="play-again-message-left"> ⬅ WOULD YOU LIKE TO PLAY AGAIN ?</p>
+                    <p id="play-again-message-right">WOULD YOU LIKE TO PLAY AGAIN ? ➡</p>
+                </div>
             </div>
 
             <div class="you-win-container">
                 <img id="you-win-img" src="img/youwin-removebg-preview.png" alt="you win">
-
+                <input type="button" class="play-again-buttons" id="right-button-restart" value="PLAY AGAIN !">
             </div>
 
         </div>

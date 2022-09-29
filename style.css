@@ -323,6 +323,13 @@ h1 {
     justify-content: center;
 }
 
+.keyboard-container P {
+
+    font-family: 'Amatic SC' ;
+    font-weight: bolder;
+    font-size: 40PX;
+}
+
 h2 {
     font-family: 'Caveat', cursive;
     font-size: 30px;
@@ -415,6 +422,31 @@ h2:hover{
     width: 38%;
     height: 88%;
     /* display: none; */
+    margin-bottom: 30px;
+}
+
+.play-again-buttons {
+    height: 25%;
+    width: 30%;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(55, 151, 47);
+    border: 1px solid black;
+    font-family: 'Amatic SC' ;
+    font-size: 30px;
+    color: black;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    margin-top: 10PX;
+}
+
+.play-again-buttons:hover {
+    background-color:#DAFA97;
+    cursor: pointer;
 }
 
 

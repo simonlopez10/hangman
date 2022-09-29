@@ -46,6 +46,20 @@ function startingState() {
     let pieDer = document.getElementById('pie-der')
     pieDer.style.display = 'none'
 
+    // Botones de reinicio del juego
+    let restartRight = document.getElementById('right-button-restart')
+    restartRight.style.display = 'none'
+
+    let restartleft = document.getElementById('left-button-restart')
+    restartleft.style.display = 'none'
+
+    // Mensaje reinicio del juego
+    let restartMessageL = document.getElementById('play-again-message-left')
+    restartMessageL.style.display = 'none'
+
+    let restartMessageR = document.getElementById('play-again-message-right')
+    restartMessageR.style.display = 'none'
+
     createKeyboard()
 }
 
@@ -77,7 +91,7 @@ function selectedCategory() {
         categoryArray = animalsWords
         alert('You have selected Animals! 🐶🐱🐦')
         selectRandomWord(categoryArray)
-        showCategoryAgain()
+        // showCategoryAgain()
     })
 
     labelCountries.addEventListener('click', function () {
@@ -88,7 +102,7 @@ function selectedCategory() {
         categoryArray = countriesWords
         alert('You have selected Countries! 🗺🌎🌍')
         selectRandomWord(categoryArray)
-        showCategoryAgain()
+        // showCategoryAgain()
     })
 
     labelSports.addEventListener('click', function () {
@@ -99,28 +113,28 @@ function selectedCategory() {
         categoryArray = sportsWords
         alert('You have selected Sports! ⚽🎾🏀')
         selectRandomWord(categoryArray)
-        showCategoryAgain()
+        // showCategoryAgain()
     })
 }
 
-function showCategoryAgain() {
-    // Sirve para mostrar nuevamente las categorias al presionar el titulo de seleccionar categoria
-    //por si el usuario no esta contento con su elección
+// function showCategoryAgain() {
+//     // Sirve para mostrar nuevamente las categorias al presionar el titulo de seleccionar categoria
+//     //por si el usuario no esta contento con su elección
 
-    let selectACategory = document.getElementById('select-a-category')
-    let labelAnimals = document.getElementById('animals-label')
-    let labelCountries = document.getElementById('countries-label')
-    let labelSports = document.getElementById('sports-label')
+//     let selectACategory = document.getElementById('select-a-category')
+//     let labelAnimals = document.getElementById('animals-label')
+//     let labelCountries = document.getElementById('countries-label')
+//     let labelSports = document.getElementById('sports-label')
 
-    selectACategory.addEventListener('click', function () {
-        labelAnimals.style.display = 'flex'
-        labelCountries.style.display = 'flex'
-        labelSports.style.display = 'flex'
-        labelAnimals.style.color = ''
-        labelCountries.style.color = ''
-        labelSports.style.color = ''
-    })
-}
+//     selectACategory.addEventListener('click', function () {
+//         labelAnimals.style.display = 'flex'
+//         labelCountries.style.display = 'flex'
+//         labelSports.style.display = 'flex'
+//         labelAnimals.style.color = ''
+//         labelCountries.style.color = ''
+//         labelSports.style.color = ''
+//     })
+// }
 
 function selectRandomWord(selectedCategoryArray) {
     //Selecciona una palabra de manera aleatoria del array de la categoria seleccionada y genera un
@@ -136,7 +150,10 @@ function createEmptySpacesWord(word) {
     for (i = 0; i < word.length; i++) {
         wordContainer.innerHTML += '<span id="random-word-letter-' + word[i] + '"></span>'
     }
-    
+
+    let CategoryContainer = document.getElementById('inputs-category')
+    CategoryContainer.style.pointerEvents = 'none'
+
     getEventKeyboard()
 }
 
@@ -168,7 +185,7 @@ function getLetterKeyboardAndCompare(event) {
                 isOk += 1
                 let spanLetter = document.getElementsByTagName('span')[i]
                 spanLetter.innerHTML = randomWord[i]
-            } 
+            }
         }
         if (isOk == randomWord.length) {
             youWin()
@@ -188,10 +205,19 @@ function youWin() {
     console.log(isOk)
     let youWinImg = document.getElementById('you-win-img')
     youWinImg.style.display = 'block'
+    let restartleft = document.getElementById('left-button-restart')
+    restartleft.style.display = 'block'
+
+    document.getElementById('keyboard-frame').style.display = 'none'
+    document.getElementById("keyboard-to-play").style.display = 'none'
+    document.getElementById('play-again-message-left').style.display = 'block'
+
+
+    restartleft.addEventListener('click', playAgain)
 }
 
 function youLose() {
-    
+
     console.log(isNotOk)
     let cuerda = document.getElementById('cuerda')
     let cabeza = document.getElementById('cabeza')
@@ -226,14 +252,20 @@ function youLose() {
             pieDer.style.display = 'block'
             backgroundImg.style.backgroundImage = ''
             youLoseImg.style.display = 'block'
+            let restartRight = document.getElementById('right-button-restart')
+            restartRight.style.display = 'block'
+
+            document.getElementById('keyboard-frame').style.display = 'none'
+            document.getElementById("keyboard-to-play").style.display = 'none'
+            document.getElementById('play-again-message-right').style.display = 'block'
+
+            restartRight.addEventListener('click', playAgain)
             break;
-        default:
-            alert('PERDISTE');
     }
 }
 
 function playAgain() {
-    alert('desea volver a iniciar')
+    window.location.reload(true)
 }
 
 
