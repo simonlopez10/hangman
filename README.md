@@ -11,9 +11,15 @@ Hangman is a popular word guessing game where the player attempts to build a mis
 
 
 ## 🚀 About Me
+
 I'm a full stack developer in training
 
 
-## COURSE
+## Course
 
 this project was created during the course fullstack web development by [ENYOI](https://www.enyoi.co/)
+
+
+## WEB
+
+[simon-hangman](https://simon-hangman.netlify.app/)
